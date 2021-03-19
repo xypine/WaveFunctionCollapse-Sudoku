@@ -1,5 +1,5 @@
 extends Button
-class_name entry
+class_name Tile
 
 var parent
 var parent_ind
@@ -11,6 +11,17 @@ var ind
 
 var supervisor
 var pos = Vector2(-1, -1)
+var possible =  [1, 2, 3,
+				 4, 5, 6,
+				 7, 8, 9 ]
+
+func update_possible_indicators():
+	var txt = ""
+	if len(possible) > 1:
+		txt = "|%s|" % len(possible)
+	else:
+		txt = possible[0]
+	text = str(txt)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
