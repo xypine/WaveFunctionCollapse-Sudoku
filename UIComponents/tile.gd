@@ -17,6 +17,7 @@ var possible =  [1, 2, 3,
 
 var column = -1
 var row = -1
+var subtile = Vector2(-1, -1)
 
 func update_possible_indicators():
 	var txt = ""
@@ -43,6 +44,8 @@ func lateReady():
 	row = ( int(pos.x / 3) * 3 ) + ( int(pos.y / 3) )
 										#Local row
 	column = ( int(pos.x) % 3 * 3 ) + ( int(pos.y) % 3 )
+	
+	subtile = Vector2( int(row / 3), int(column / 3))
 	
 	# Finally, register the tile
 	supervisor.addTile(self)

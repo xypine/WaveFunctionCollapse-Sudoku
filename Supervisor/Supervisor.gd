@@ -30,6 +30,12 @@ func getCol(col: int):
 		if i.column == col:
 			out.append(i)
 	return out
+func getSubtile(pos: Vector2):
+	var out = []
+	for i in tiles.values():
+		if i.subtile == pos:
+			out.append(i)
+	return out
 
 func setTile(pos: Vector2, value: Array):
 	var tile = tiles[pos]
@@ -65,7 +71,9 @@ func prefab_Cross():
 	f = getCol(4)
 	for i in f:
 		i.modulate = Color(0, 1, 0)
-
+	f = getSubtile( Vector2(2, 2) )
+	for i in f:
+		i.modulate = Color(0, 0, 1)
 
 func _on_Reset_All_pressed():
 	$Question.hide()
