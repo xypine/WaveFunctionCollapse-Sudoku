@@ -15,6 +15,9 @@ var possible =  [1, 2, 3,
 				 4, 5, 6,
 				 7, 8, 9 ]
 
+var column = -1
+var row = -1
+
 func update_possible_indicators():
 	var txt = ""
 	if len(possible) > 1:
@@ -25,6 +28,7 @@ func update_possible_indicators():
 func reset():
 	text = ""
 	possible =  [1, 2, 3, 4, 5, 6, 7, 8, 9]
+	modulate = Color(1, 1, 1, 1)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -34,6 +38,13 @@ func lateReady():
 	ind = parent.get_children().find(self)
 	parent_ind = parent.ind
 	pos = Vector2(parent_ind, ind)
+	
+									 #Local row
+	row = ( int(pos.x / 3) * 3 ) + ( int(pos.y / 3) )
+										#Local row
+	column = ( int(pos.x) % 3 * 3 ) + ( int(pos.y) % 3 )
+	
+	# Finally, register the tile
 	supervisor.addTile(self)
 	
 var lateRDone = false

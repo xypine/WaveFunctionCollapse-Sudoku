@@ -83,6 +83,7 @@ rect_min_size = Vector2( 95, 0 )
 text = "Reset"
 
 [node name="Yeet" type="Label" parent="Controls/HBoxContainer"]
+visible = false
 margin_left = 279.0
 margin_top = 10.0
 margin_right = 307.0
@@ -91,6 +92,26 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Yeet"
 
+[node name="Filler" type="Label" parent="Controls/HBoxContainer"]
+margin_left = 99.0
+margin_top = 10.0
+margin_right = 261.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="Yeet2" type="Button" parent="Controls/HBoxContainer"]
+margin_left = 265.0
+margin_right = 321.0
+margin_bottom = 34.0
+text = "  Yeet  "
+
+[node name="Filler2" type="Label" parent="Controls/HBoxContainer"]
+margin_left = 325.0
+margin_top = 10.0
+margin_right = 487.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
 [node name="Update All" type="Button" parent="Controls/HBoxContainer"]
 margin_left = 491.0
 margin_right = 586.0
@@ -98,4 +119,5 @@ margin_bottom = 34.0
 text = "  Update All  "
 [connection signal="user_finished" from="PanelContainer/Arena/Question" to="PanelContainer/Arena" method="_on_Question_user_finished"]
 [connection signal="pressed" from="Controls/HBoxContainer/Reset All" to="PanelContainer/Arena" method="_on_Reset_All_pressed"]
+[connection signal="pressed" from="Controls/HBoxContainer/Yeet2" to="PanelContainer/Arena" method="_on_Yeet2_pressed"]
 [connection signal="pressed" from="Controls/HBoxContainer/Update All" to="PanelContainer/Arena" method="_on_Update_All_pressed"]

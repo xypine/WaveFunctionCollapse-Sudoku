@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "ConvertWiz",
+"language": "GDScript",
+"path": "res://Tools/cw.gd"
+}, {
 "base": "Button",
 "class": "Tile",
 "language": "GDScript",
 "path": "res://UIComponents/tile.gd"
 } ]
 _global_script_class_icons={
+"ConvertWiz": "",
 "Tile": ""
 }
 
@@ -23,6 +29,10 @@ _global_script_class_icons={
 config/name="WFC-Sudoku"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+CW="*res://Tools/cw.gd"
 
 [display]
 

@@ -16,7 +16,20 @@ func addTile(tile: Tile):
 	print("Registered %s" % (tile.pos + Vector2(1, 1)) )
 
 func getTile(pos: Vector2):
-	pass
+	return tiles[pos]
+
+func getRow(row: int):
+	var out = []
+	for i in tiles.values():
+		if i.row == row:
+			out.append(i)
+	return out
+func getCol(col: int):
+	var out = []
+	for i in tiles.values():
+		if i.column == col:
+			out.append(i)
+	return out
 
 func setTile(pos: Vector2, value: Array):
 	var tile = tiles[pos]
@@ -36,7 +49,7 @@ func _on_Question_user_finished():
 	var pos = $Question.current
 	var commit = $Question.accepted
 	var val = $Question.value
-	print("%s,%s,%s" % [pos, commit, val])
+#	print("%s,%s,%s" % [pos, commit, val])
 	if commit:
 		setTile(pos, [val])
 
@@ -45,8 +58,20 @@ func _on_Update_All_pressed():
 	for i in tiles.values():
 		i.update_possible_indicators()
 
+func prefab_Cross():
+	var f = getRow(4)
+	for i in f:
+		i.modulate = Color(1, 0, 0)
+	f = getCol(4)
+	for i in f:
+		i.modulate = Color(0, 1, 0)
+
 
 func _on_Reset_All_pressed():
 	$Question.hide()
 	for i in tiles.values():
 		i.reset()
+
+
+func _on_Yeet2_pressed():
+	prefab_Cross()
