@@ -22,7 +22,9 @@ func update_possible_indicators():
 	else:
 		txt = possible[0]
 	text = str(txt)
-
+func reset():
+	text = ""
+	possible =  [1, 2, 3, 4, 5, 6, 7, 8, 9]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

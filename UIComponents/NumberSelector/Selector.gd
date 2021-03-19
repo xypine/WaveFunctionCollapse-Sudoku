@@ -26,6 +26,8 @@ func _process(delta):
 	if visible:
 		if Input.is_action_just_pressed("ui_accept"):
 			_on_Commit_pressed()
+		if Input.is_action_just_pressed("ui_cancel"):
+			_on_Cancel_pressed()
 func reset():
 	slider.value = 5
 	button_result.disabled = true

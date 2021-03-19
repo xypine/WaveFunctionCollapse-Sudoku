@@ -76,12 +76,13 @@ margin_bottom = 41.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="Controls/HBoxContainer"]
-margin_right = 47.0
+[node name="Reset All" type="Button" parent="Controls/HBoxContainer"]
+margin_right = 95.0
 margin_bottom = 34.0
-text = "Lmao"
+rect_min_size = Vector2( 95, 0 )
+text = "Reset"
 
-[node name="Label" type="Label" parent="Controls/HBoxContainer"]
+[node name="Yeet" type="Label" parent="Controls/HBoxContainer"]
 margin_left = 279.0
 margin_top = 10.0
 margin_right = 307.0
@@ -90,9 +91,11 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Yeet"
 
-[node name="Button2" type="Button" parent="Controls/HBoxContainer"]
-margin_left = 539.0
+[node name="Update All" type="Button" parent="Controls/HBoxContainer"]
+margin_left = 491.0
 margin_right = 586.0
 margin_bottom = 34.0
-text = "Lmao"
+text = "  Update All  "
 [connection signal="user_finished" from="PanelContainer/Arena/Question" to="PanelContainer/Arena" method="_on_Question_user_finished"]
+[connection signal="pressed" from="Controls/HBoxContainer/Reset All" to="PanelContainer/Arena" method="_on_Reset_All_pressed"]
+[connection signal="pressed" from="Controls/HBoxContainer/Update All" to="PanelContainer/Arena" method="_on_Update_All_pressed"]

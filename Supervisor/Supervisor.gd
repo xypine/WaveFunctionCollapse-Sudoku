@@ -39,3 +39,14 @@ func _on_Question_user_finished():
 	print("%s,%s,%s" % [pos, commit, val])
 	if commit:
 		setTile(pos, [val])
+
+
+func _on_Update_All_pressed():
+	for i in tiles.values():
+		i.update_possible_indicators()
+
+
+func _on_Reset_All_pressed():
+	$Question.hide()
+	for i in tiles.values():
+		i.reset()
