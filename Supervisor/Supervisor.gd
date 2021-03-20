@@ -60,6 +60,8 @@ func _on_Question_user_finished():
 #	print("%s,%s,%s" % [pos, commit, val])
 	if commit:
 		setTile(pos, [val])
+		updateNumbers()
+		updateNeigh(pos)
 
 func updateNumbers():
 	for i in tiles.values():
@@ -118,11 +120,13 @@ func solve():
 		var shuffled = lowest.possible
 		shuffled.shuffle()
 		lowest.possible = [ lowest.possible[0] ] #shuffled
-	#	updateNeigh(lowest.pos)
+		updateNeigh(lowest.pos, true)
 	else:
 		print("No valid moves left")
-	for i in range(10):
-		_on_Yeet2_pressed()
+#	for i in range(1):
+#		for t in tiles.values():
+#			updateNeigh( t.pos )
+	markIncorrect()
 
 func _on_Update_All_pressed():
 	solve()
@@ -162,21 +166,24 @@ func check(list: Array):
 			for i in list:
 				incorrect.append(i)
 	return incorrect
-func updateNeigh(pos: Vector2):
+func updateNeigh(pos: Vector2, recursive: bool = true):
 	var tile = tiles[pos]
 	var sub = getSubtile(tile.subtile)
 	var col = getCol(tile.column)
 	var row = getRow(tile.row)
 #	print(tile, sub, col, row)
-	for l in [sub, col, row]:
-		for n in l:
-#			n.modulate = Color(0, 1, 0)
-			if n != tile:
-				if len(tile.possible) == 1:
+	if len(tile.possible) == 1:
+		for l in [sub, col, row]:
+			for n in l:
+	#			n.modulate = Color(0, 1, 0)
+				if n != tile:
 					var value = tile.possible[0]
 					if value in n.possible:
 						if len(n.possible) > 1:
 							n.possible.remove(n.possible.find(value))
+							if recursive:
+								if len(n.possible) == 1:
+									updateNeigh(n.pos, true)
 	updateNumbers()
 func markIncorrect():
 #	randomize()

@@ -2,14 +2,15 @@
 
 [ext_resource path="res://UIComponents/tile.gd" type="Script" id=1]
 
-[sub_resource type="OpenSimplexNoise" id=2]
+[sub_resource type="OpenSimplexNoise" id=1]
+period = 256.0
 
-[sub_resource type="NoiseTexture" id=1]
+[sub_resource type="NoiseTexture" id=2]
 width = 16
 height = 16
 seamless = true
 bump_strength = 32.0
-noise = SubResource( 2 )
+noise = SubResource( 1 )
 
 [node name="1" type="Button"]
 margin_right = 64.0
@@ -22,6 +23,6 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 32, 32 )
-scale = Vector2( 3, 3 )
-texture = SubResource( 1 )
+scale = Vector2( 3.5, 3.5 )
+texture = SubResource( 2 )
 [connection signal="pressed" from="." to="." method="_on_1_pressed"]
