@@ -8,3 +8,6 @@ Made using Godot 3.
 
 # Precompiled builds
 [HTML5 Export Available Here](https://jonnelafin.github.io/WaveFunctionCollapse-Sudoku/)
+
+# Saving and Loading
+This program can export and read string-type representations of the sudoku-board following the standard [this page](https://www.7sudoku.com/instructions/loading-puzzles) defines, making it compatible with all 7sudoku puzzles.
