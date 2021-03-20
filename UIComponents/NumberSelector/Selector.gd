@@ -4,7 +4,7 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var value = 0
+var value = 5
 
 
 onready var label_result = $UI/PanelContainer/VBoxContainer/LineEdit

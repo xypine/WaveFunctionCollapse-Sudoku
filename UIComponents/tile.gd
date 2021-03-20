@@ -20,10 +20,10 @@ var row = -1
 var subtile = Vector2(-1, -1)
 
 func update_possible_indicators():
-	var txt = ""
+	var txt = "-"
 	if len(possible) > 1:
 		txt = "|%s|" % len(possible)
-	else:
+	elif len(possible) == 1:
 		txt = possible[0]
 	text = str(txt)
 func reset():
