@@ -27,6 +27,9 @@ func update_possible_indicators():
 	elif len(possible) == 1:
 		txt = possible[0]
 	text = str(txt)
+	var s = lerp(0.0, 3.0, ((len(possible)-1.0)/8.0) )
+	$Sprite.scale = Vector2( s, s )
+#	$AnimationPlayer.stop()
 func reset():
 	text = ""
 	possible =  [1, 2, 3, 4, 5, 6, 7, 8, 9]

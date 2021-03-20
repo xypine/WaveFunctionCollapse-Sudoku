@@ -102,20 +102,27 @@ func solve():
 	print("Solving...")
 	var lowest
 	var lowest_score = 999999
-	for i in tiles.values():
+	randomize()
+	var rand = tiles.values()
+	rand.shuffle()
+	for i in rand:
 		var s = len(i.possible)
 		if s > 1:
 			if s < lowest_score:
 				lowest = i
 				lowest_score = s
 	if lowest_score != 999999:
-		print("Best score was for %s" % lowest.pos)
+		print("Best score was for %s: %s" % [lowest.pos, lowest.possible[0]] )
 		lowest.modulate = Color(0, 1, 0)
-		lowest.possible = [ lowest.possible[0] ]
+#		rand_seed(lowest.ind)
+		var shuffled = lowest.possible
+		shuffled.shuffle()
+		lowest.possible = [ lowest.possible[0] ] #shuffled
 	#	updateNeigh(lowest.pos)
 	else:
 		print("No valid moves left")
-	_on_Yeet2_pressed()
+	for i in range(10):
+		_on_Yeet2_pressed()
 
 func _on_Update_All_pressed():
 	solve()
@@ -172,8 +179,12 @@ func updateNeigh(pos: Vector2):
 							n.possible.remove(n.possible.find(value))
 	updateNumbers()
 func markIncorrect():
+#	randomize()
 	var incorrect = []
-	for i in tiles.values():
+	var rand = tiles.values()
+	rand.invert()
+#	rand.shuffle()
+	for i in rand:
 		i.modulate = Color(1, 1, 1, 1)
 		var sub = getSubtile(i.pos)
 		var col = getCol(i.column)
@@ -193,8 +204,14 @@ func _on_Yeet2_pressed():
 
 
 func _on_Save_pressed():
-	saveGame()
+	var save = saveGame()
+	if OS.has_feature('JavaScript'):
+		JavaScript.eval("window.prompt('Level code:', '%s')" % save)
 
 
 func _on_Load_pressed():
-	parseGame(saveField.text)
+	if OS.has_feature('JavaScript'):
+		var txt = JavaScript.eval("window.prompt('Level code?')")
+		parseGame(txt)
+	else:
+		parseGame(saveField.text)
