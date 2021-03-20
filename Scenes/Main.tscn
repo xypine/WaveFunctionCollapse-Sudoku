@@ -60,7 +60,7 @@ visible = false
 margin_top = 600.0
 margin_right = 600.0
 margin_bottom = 648.0
-rect_min_size = Vector2( 600, 48 )
+rect_min_size = Vector2( 600, 96 )
 rect_clip_content = true
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -68,21 +68,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Controls"]
+[node name="V" type="VBoxContainer" parent="Controls"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 593.0
-margin_bottom = 41.0
+margin_bottom = 89.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls/V"]
+margin_right = 586.0
+margin_bottom = 39.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Reset All" type="Button" parent="Controls/HBoxContainer"]
-margin_right = 95.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 95, 0 )
+[node name="Reset All" type="Button" parent="Controls/V/HBoxContainer"]
+margin_right = 63.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 63, 0 )
 text = "Reset"
 
-[node name="Yeet" type="Label" parent="Controls/HBoxContainer"]
+[node name="Load" type="Button" parent="Controls/V/HBoxContainer"]
+margin_left = 67.0
+margin_right = 130.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 63, 0 )
+text = "Load"
+
+[node name="Save" type="Button" parent="Controls/V/HBoxContainer"]
+margin_left = 134.0
+margin_right = 197.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 63, 0 )
+text = "Save"
+
+[node name="Yeet" type="Label" parent="Controls/V/HBoxContainer"]
 visible = false
 margin_left = 279.0
 margin_top = 10.0
@@ -92,33 +110,41 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "Yeet"
 
-[node name="Filler" type="Label" parent="Controls/HBoxContainer"]
-margin_left = 99.0
-margin_top = 10.0
-margin_right = 256.0
-margin_bottom = 24.0
+[node name="Filler" type="Label" parent="Controls/V/HBoxContainer"]
+margin_left = 201.0
+margin_top = 12.0
+margin_right = 259.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
 
-[node name="Yeet2" type="Button" parent="Controls/HBoxContainer"]
-margin_left = 260.0
-margin_right = 326.0
-margin_bottom = 34.0
+[node name="Yeet2" type="Button" parent="Controls/V/HBoxContainer"]
+margin_left = 263.0
+margin_right = 329.0
+margin_bottom = 39.0
 text = "  Check  "
 
-[node name="Filler2" type="Label" parent="Controls/HBoxContainer"]
-margin_left = 330.0
-margin_top = 10.0
-margin_right = 487.0
-margin_bottom = 24.0
+[node name="Filler2" type="Label" parent="Controls/V/HBoxContainer"]
+margin_left = 333.0
+margin_top = 12.0
+margin_right = 392.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
 
-[node name="Update All" type="Button" parent="Controls/HBoxContainer"]
-margin_left = 491.0
+[node name="Update All" type="Button" parent="Controls/V/HBoxContainer"]
+margin_left = 396.0
 margin_right = 586.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 95, 0 )
+margin_bottom = 39.0
+rect_min_size = Vector2( 190, 0 )
 text = "Solve"
+
+[node name="LineEdit" type="LineEdit" parent="Controls/V"]
+margin_top = 43.0
+margin_right = 586.0
+margin_bottom = 82.0
+size_flags_vertical = 3
 [connection signal="user_finished" from="PanelContainer/Arena/Question" to="PanelContainer/Arena" method="_on_Question_user_finished"]
-[connection signal="pressed" from="Controls/HBoxContainer/Reset All" to="PanelContainer/Arena" method="_on_Reset_All_pressed"]
-[connection signal="pressed" from="Controls/HBoxContainer/Yeet2" to="PanelContainer/Arena" method="_on_Yeet2_pressed"]
-[connection signal="pressed" from="Controls/HBoxContainer/Update All" to="PanelContainer/Arena" method="_on_Update_All_pressed"]
+[connection signal="pressed" from="Controls/V/HBoxContainer/Reset All" to="PanelContainer/Arena" method="_on_Reset_All_pressed"]
+[connection signal="pressed" from="Controls/V/HBoxContainer/Load" to="PanelContainer/Arena" method="_on_Load_pressed"]
+[connection signal="pressed" from="Controls/V/HBoxContainer/Save" to="PanelContainer/Arena" method="_on_Save_pressed"]
+[connection signal="pressed" from="Controls/V/HBoxContainer/Yeet2" to="PanelContainer/Arena" method="_on_Yeet2_pressed"]
+[connection signal="pressed" from="Controls/V/HBoxContainer/Update All" to="PanelContainer/Arena" method="_on_Update_All_pressed"]

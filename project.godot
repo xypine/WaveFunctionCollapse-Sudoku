@@ -37,7 +37,7 @@ CW="*res://Tools/cw.gd"
 [display]
 
 window/size/width=600
-window/size/height=648
+window/size/height=696
 window/size/resizable=false
 
 [rendering]

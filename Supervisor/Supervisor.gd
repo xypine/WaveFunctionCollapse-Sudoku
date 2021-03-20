@@ -5,6 +5,8 @@ extends VBoxContainer
 # var a = 2
 # var b = "text"
 
+onready var saveField = $"../../Controls/V/LineEdit"
+
 var tiles = {}
 
 # Called when the node enters the scene tree for the first time.
@@ -63,6 +65,39 @@ func updateNumbers():
 	for i in tiles.values():
 		i.update_possible_indicators()
 
+func saveGame():
+	var out = ""
+	for y in range(0, 9):
+		for x in range(0, 9):
+			var tile
+			for i in tiles.values():
+				if i.column == x and i.row == y:
+					tile = i
+			if is_instance_valid(tile):
+				if len(tile.possible) > 1:
+					out += "."
+				elif len(tile.possible) == 1:
+					out += str(tile.possible[0])
+				else:
+					out += "."
+	print(out)
+	saveField.text = out
+	return(out)
+func parseGame(inp: String):
+	var t_list = {}
+	for i in tiles.values():
+		var pos = i.index
+		t_list[pos] = i
+		i.text = str(pos)
+	var ind = 0
+	for i in inp:
+		var possible = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+		if i == "." or i == "0":
+			pass
+		else:
+			t_list[ind].possible = [int(i)]
+		ind += 1
+	updateNumbers()
 func solve():
 	print("Solving...")
 	var lowest
@@ -77,6 +112,7 @@ func solve():
 		print("Best score was for %s" % lowest.pos)
 		lowest.modulate = Color(0, 1, 0)
 		lowest.possible = [ lowest.possible[0] ]
+	#	updateNeigh(lowest.pos)
 	else:
 		print("No valid moves left")
 	_on_Yeet2_pressed()
@@ -132,7 +168,8 @@ func updateNeigh(pos: Vector2):
 				if len(tile.possible) == 1:
 					var value = tile.possible[0]
 					if value in n.possible:
-						n.possible.remove(n.possible.find(value))
+						if len(n.possible) > 1:
+							n.possible.remove(n.possible.find(value))
 	updateNumbers()
 func markIncorrect():
 	var incorrect = []
@@ -153,3 +190,11 @@ func _on_Yeet2_pressed():
 	markIncorrect()
 	for i in tiles.values():
 		updateNeigh( i.pos )
+
+
+func _on_Save_pressed():
+	saveGame()
+
+
+func _on_Load_pressed():
+	parseGame(saveField.text)
